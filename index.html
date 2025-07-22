@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hangman🎬</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <div class="container">
+    <div class="left">
+      <canvas id="hangmanCanvas" width="300" height="300"></canvas>
+      <div class="movie-title">Guess the Bollywood Movie</div>
+    </div>
+    <div class="right">
+      <div id="wordDisplay" class="word"></div>
+      <div id="letters" class="letters"></div>
+      <div id="result"></div>
+      <button class="cta" id="newGameBtn" onclick="startGame()">New Movie🔁</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

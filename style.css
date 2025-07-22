@@ -1,0 +1,230 @@
+:root {
+  --primary: #1A1A2E;
+  --primary-dark: #16213E;
+  --secondary: #0F3460;
+  --accent: #E94560;
+  --light: #F1F1F1;
+  --dark: #0D0D0D;
+  --bg-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  --border-radius: 12px;
+  --transition: all 0.3s ease-out;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-gradient);
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.left, .right {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(15, 52, 96, 0.3);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+
+.left:hover, .right:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.word-container {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: var(--border-radius);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 120px;
+  animation: fadeIn 0.6s ease-out;
+  text-align: center;
+}
+
+.letter-box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 2rem;
+  height: 3rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: var(--light);
+  transition: var(--transition);
+  position: relative;
+}
+
+.letter-box::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.3;
+}
+
+.space {
+  width: 1rem;
+}
+
+.word-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+}
+
+.letters button {
+  padding: 1rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: rgba(15, 52, 96, 0.5);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: 4px;
+  color: var(--light);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.letters button:hover:not(:disabled) {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.letters button:disabled {
+  background: rgba(15, 52, 96, 0.2);
+  color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(233, 69, 96, 0.1);
+  cursor: not-allowed;
+}
+
+#result {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 2rem 0;
+  padding: 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(26, 26, 46, 0.5);
+  border-left: 3px solid var(--accent);
+  text-align: center;
+}
+
+.success {
+  color: var(--light);
+  border-left-color: #4CAF50;
+}
+
+.error {
+  color: var(--light);
+  border-left-color: var(--accent);
+}
+
+button.cta {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+
+button.cta:hover {
+  background: #d13a56;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .word-container {
+    font-size: 1.8rem;
+    padding: 1.5rem;
+  }
+
+  .letter-box {
+    min-width: 1.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+  }
+
+  .letters button {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.1rem;
+  }
+
+  body {
+    padding: 1rem;
+  }
+}
+
+.correct-guess {
+  animation: fadeIn 0.4s ease;
+}
+
+.wrong-guess {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
